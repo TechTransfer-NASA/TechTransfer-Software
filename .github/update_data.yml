@@ -1,0 +1,37 @@
+name: Atualizar dados NASA TechTransfer Software
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"         # toda segunda-feira, 06:00 UTC (03:00 em Brasília)
+  workflow_dispatch:            # execução manual: Actions > Run workflow
+
+permissions:
+  contents: read
+
+concurrency:
+  group: update-data
+  cancel-in-progress: false     # se já houver uma execução, a nova espera
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Baixar o repositório
+        uses: actions/checkout@v4
+
+      - name: Instalar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar dependências
+        run: pip install requests
+
+      - name: Coletar da NASA e gravar no Supabase
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          NASA_API_KEY: ${{ secrets.NASA_API_KEY }}
+          NASA_API_BASE: ${{ vars.NASA_API_BASE }}   # opcional; vazio usa o padrão do script
+        run: python scripts/fetch_nasa.py
