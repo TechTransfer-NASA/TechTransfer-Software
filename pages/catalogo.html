@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../favicon.ico?v=2" type="image/x-icon" />
+    <script src="../js/config.js" defer></script>
+    <script src="../js/utils.js" defer></script>
+    <script src="../js/catalogo.js" defer></script>
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/catalogo.css" />
+    <title>TechTransfer Software - Catálogo</title>
+  </head>
+  <body>
+    <header>
+      <p class="brand">NASA <span>TechTransfer</span> Software</p>
+      <nav class="header_links">
+        <a href="catalogo.html">Catálogo</a>
+        <a href="execucoes.html">Execuções</a>
+        <a
+          href="https://github.com/TechTransfer-NASA/TechTransfer-Software"
+          target="_blank"
+          >Repositório</a
+        >
+        <a href="https://software.nasa.gov/" target="_blank"
+          >Catálogo oficial da NASA</a
+        >
+      </nav>
+    </header>
+
+    <main>
+      <h1>Catálogo de software</h1>
+      <p class="sub">
+        Programas desenvolvidos pelos centros da NASA e disponibilizados ao
+        público.
+      </p>
+
+      <div class="filtros">
+        <div class="campo">
+          <label for="search"
+            >Buscar (título, descrição em inglês ou código)</label
+          >
+          <input
+            id="search"
+            type="search"
+            placeholder="ex.: visualization, trajectory, GSC-16852"
+            autocomplete="off"
+          />
+        </div>
+        <div class="campo">
+          <label for="category_filter">Categoria</label>
+          <select id="category_filter">
+            <option value="">Todas as categorias</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label for="center_filter">Centro</label>
+          <select id="center_filter">
+            <option value="">Todos os centros</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label for="license_filter">Licença</label>
+          <select id="license_filter">
+            <option value="">Todas as licenças</option>
+          </select>
+        </div>
+        <div class="campo">
+          <button id="clear" type="button">Limpar filtros</button>
+        </div>
+      </div>
+
+      <div class="barra">
+        <span id="resumo"></span>
+      </div>
+      <div id="state"></div>
+      <div id="cards"></div>
+      <button id="more" type="button" hidden>Carregar mais</button>
+      <noscript
+        ><p class="state">
+          Este painel precisa de JavaScript para carregar os dados.
+        </p></noscript
+      >
+    </main>
+
+    <footer>
+      Dados: NASA TechTransfer, coletados semanalmente por GitHub Actions e
+      guardados no Supabase.
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+:root {
+  --global_vertical_pad: 2rem;
+}
+
+body {
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+header {
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--global_vertical_pad);
+  height: 6rem;
+}
+
+.header_links {
+  display: flex;
+  gap: 2rem;
+}
+
+main {
+  padding: 0 var(--global_vertical_pad);
+  flex: 1;
+  overflow: scroll;
+}
+
+article {
+  margin: 2rem 0;
+}
+
+footer {
+  height: 4rem;
+  padding: 0 var(--global_vertical_pad);
+}
