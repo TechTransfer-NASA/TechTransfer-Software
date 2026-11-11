@@ -1,4 +1,4 @@
 document.addEventListener(
   "DOMContentLoaded",
-  () => (window.location.href = "/pages/catalogo.html"),
+  () => (window.location.href = "pages/catalogo.html"),
 );
