@@ -74,7 +74,7 @@ function set_params(offset) {
     if (/\d/.test(f.search) && /^[\w-]+$/.test(f.search)) {
       p.set("codigo", `ilike.*${f.search}*`);
     } else {
-      p.set("search", `wfts(english).${f.search}`);
+      p.set("busca", `wfts(english).${f.search}`);
     }
   }
 
@@ -105,7 +105,7 @@ function cardHtml(s) {
     : "";
 
   return `
-    <article class="card">
+    <section class="card">
       <h3 class="card_titulo">
         <p href="${detalhe}" target="_blank">
           ${escape_html(titulo)}
@@ -119,14 +119,25 @@ function cardHtml(s) {
       <p class="card_desc">
         ${escape_html(s.descricao || "Sem descrição disponível.")}
       </p>
+      
+      <button type="button" class="card_mais" data-acao="alternar" aria-expanded="false" hidden>Ler mais</button>
 
-      <div class="card_rodape">
+      <div class="card_footer">
         ${etiquetas}
       </div>
 
       ${linkRepo}
-    </article>
+    </section>
   `;
+}
+
+function show_read_more() {
+  document
+    .querySelectorAll(".card_desc:not(.card_desc_aberta)")
+    .forEach((desc) => {
+      desc.nextElementSibling.hidden =
+        desc.scrollHeight <= desc.clientHeight + 1;
+    });
 }
 
 function show_state(texto, tipo) {
@@ -143,7 +154,7 @@ function show_error() {
 
   caixa.innerHTML =
     "Não foi possível carregar os dados. Verifique a conexão e tente de novo. " +
-    '<button type="button" data-acao="tentar">Tentar novamente</button>';
+    '<button type="button">Tentar novamente</button>';
 
   document.getElementById("resumo").textContent = "";
 }
@@ -205,6 +216,8 @@ async function load(reboot = false) {
     document
       .getElementById("cards")
       .insertAdjacentHTML("beforeend", linhas.map(cardHtml).join(""));
+
+    show_read_more();
 
     state.loaded += linhas.length;
 
@@ -303,6 +316,20 @@ async function start() {
   ["category_filter", "center_filter", "license_filter"].forEach((id) => {
     document.getElementById(id).addEventListener("change", reload);
   });
+
+  document.getElementById("cards").addEventListener("click", (e) => {
+    const button = e.target.closest("[data-acao='alternar']");
+
+    if (!button) return;
+
+    const open =
+      button.previousElementSibling.classList.toggle("card_desc_aberta");
+
+    button.textContent = open ? "Ler menos" : "Ler mais";
+    button.setAttribute("aria-expanded", open);
+  });
+
+  window.addEventListener("resize", wait(show_read_more, 200));
 
   document.getElementById("clear").addEventListener("click", () => {
     document.getElementById("search").value = "";

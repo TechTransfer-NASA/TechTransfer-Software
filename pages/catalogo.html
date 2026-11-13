@@ -13,10 +13,10 @@
   </head>
   <body>
     <header>
-      <p class="brand">NASA <span>TechTransfer</span> Software</p>
+      <p class="brand">NASA TechTransfer <span>Software</span></p>
       <nav class="header_links">
-        <a href="catalogo.html">Catálogo</a>
-        <a href="execucoes.html">Execuções</a>
+        <a class="current_page" href="catalogo.html">Catálogo</a>
+        <a href="logs.html">Logs</a>
         <a
           href="https://github.com/TechTransfer-NASA/TechTransfer-Software"
           target="_blank"
@@ -30,10 +30,6 @@
 
     <main>
       <h1>Catálogo de software</h1>
-      <p class="sub">
-        Programas desenvolvidos pelos centros da NASA e disponibilizados ao
-        público.
-      </p>
 
       <div class="filtros">
         <div class="campo">
@@ -47,24 +43,28 @@
             autocomplete="off"
           />
         </div>
+
         <div class="campo">
           <label for="category_filter">Categoria</label>
           <select id="category_filter">
             <option value="">Todas as categorias</option>
           </select>
         </div>
+
         <div class="campo">
           <label for="center_filter">Centro</label>
           <select id="center_filter">
             <option value="">Todos os centros</option>
           </select>
         </div>
+
         <div class="campo">
           <label for="license_filter">Licença</label>
           <select id="license_filter">
             <option value="">Todas as licenças</option>
           </select>
         </div>
+
         <div class="campo">
           <button id="clear" type="button">Limpar filtros</button>
         </div>
@@ -74,8 +74,11 @@
         <span id="resumo"></span>
       </div>
       <div id="state"></div>
+
       <div id="cards"></div>
+
       <button id="more" type="button" hidden>Carregar mais</button>
+
       <noscript
         ><p class="state">
           Este painel precisa de JavaScript para carregar os dados.

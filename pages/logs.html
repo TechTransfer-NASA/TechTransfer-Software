@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../favicon.ico?v=2" type="image/x-icon" />
+    <script src="../js/config.js" defer></script>
+    <script src="../js/utils.js" defer></script>
+    <script src="../js/logs.js" defer></script>
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/logs.css" />
+    <title>TechTransfer Software - Logs</title>
+  </head>
+  <body>
+    <header>
+      <p class="brand">NASA TechTransfer <span>Software</span></p>
+      <nav class="header_links">
+        <a href="catalogo.html">Catálogo</a>
+        <a class="current_page" href="logs.html">Logs</a>
+        <a
+          href="https://github.com/TechTransfer-NASA/TechTransfer-Software"
+          target="_blank"
+          >Repositório</a
+        >
+        <a href="https://software.nasa.gov/" target="_blank"
+          >Catálogo oficial da NASA</a
+        >
+      </nav>
+    </header>
+
+    <main>
+      <h1>Logs de execução</h1>
+      <div id="summary" class="resumo_cards"></div>
+      <div id="alert"></div>
+      <div id="state"></div>
+
+      <div id="runs"></div>
+
+      <button id="more" type="button" hidden>Carregar mais</button>
+    </main>
+
+    <footer>
+      Dados: NASA TechTransfer, coletados semanalmente por GitHub Actions e
+      guardados no Supabase.
+    </footer>
+  </body>
+</html>
